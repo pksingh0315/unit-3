@@ -1,0 +1,46 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+#signup-form-div>form{
+    width: 30%;
+    height: 400px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: antiquewhite;
+    padding: 10px 30px 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+    
+}
+input{
+    width: 100%;
+    padding: 8px;
+    margin: 10px;
+}
+#form>input:nth-child(6){
+    width: 40%;
+    background-color: royalblue;
+    border-radius: 8px;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 18px;
+}
+/* navbar */
+#navbar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    background-color: royalblue;
+    justify-content: end;
+}
+a{
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}

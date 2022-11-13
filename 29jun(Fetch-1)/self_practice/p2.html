@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p2</title>
+</head>
+<body>
+    <h1>
+        masai coffee
+    </h1>
+    <div id="box"></div>
+</body>
+</html>
+<script>
+    //url='https://masai-api.herokuapp.com/coffee/menu'
+    async function myApi(){
+        let api=await fetch('https://masai-api.herokuapp.com/coffee/menu')
+        let data=await api.json()
+        append(data.menu.data)
+        //console.log(data.menu.data)
+    }
+    myApi()
+
+    function append(x) {
+    x.forEach((ele) => {
+      let div = document.createElement("div");
+      div.setAttribute("id", "div");
+      let image = document.createElement("img");
+      image.src = ele.image;
+
+      let fullName = document.createElement("h3");
+      fullName.innerText = ele.description;
+
+      let id = document.createElement("h4");
+      id.innerText = ele.id;
+
+      let price=document.createElement("h4")
+      price.innerText=ele.price
+
+      div.append(image, fullName, id,price);
+      document.querySelector("#box").append(div);
+      console.log(ele);
+    });
+  }
+</script>

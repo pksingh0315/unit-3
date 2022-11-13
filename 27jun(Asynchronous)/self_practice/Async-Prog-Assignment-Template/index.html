@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="./styles/index.css">
+    </head>
+
+    <body>
+        <div id="navbar">
+           
+            <a href="login.html">Login</a>
+            <a href="signup.html">SignUp</a>
+        </div>
+        <form>
+            <input type="text" id="name" placeholder="Movie Name">
+            <input type="date" id="date" placeholder="Relese Data">
+            <input type="url" id="photo" placeholder="link">
+            <input type="number" id="rating" placeholder="IMDB-Rating">
+            <input type="Submit">
+        </form>
+
+        <div id="sort-buttons">
+            <select name="" id="select">
+                <option value=""> select</option>
+                <option value="lh">Low to High Rating</option>
+                <option value="hl">High to low Rating</option>
+            </select>
+            <!--Add sorting here-->
+        </div>
+
+        <div id="container">
+            <div id="movies">
+                <!--Show list of movies here-->
+               
+            </div>
+            <div id="slideshow">
+                <!--Show Slideshow here-->
+                <button id="start">Start Slide</button>
+                <button id="stop"> Stop</button>
+    
+            </div>
+
+        </div>
+
+       
+
+
+
+       
+    </body>
+
+</html>
+<script src="./scripts/index.js"></script>

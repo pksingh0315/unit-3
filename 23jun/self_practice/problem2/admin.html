@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+  
+    <form >
+        <input type="text" id="name" placeholder="Product Name">
+        <input type="text" id="category" placeholder="Category">
+        <input type="url" id="image" placeholder="image url">
+        <input type="number" id="price" placeholder="Price">
+        <select  id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+  
+        <input type="submit" id="add">
+
+    </form>
+</body>
+</html>
+<script>
+    let productArr=JSON.parse(localStorage.getItem("Products"))||[]
+
+    document.querySelector("form").addEventListener("submit",formSubmit)
+
+    function formSubmit(event){
+        event.preventDefault()
+       let form=document.querySelector("form")
+
+       let name=form.name.value;
+       let category=form.category.value;
+       let image=form.image.value;
+       let price=form.price.value;
+       let gender=form.gender.value;
+  
+        console.log(name)
+       //*********invoke function (productSold)**********//
+
+       let product=new productSold(name,category,image,price,gender)
+       //******store in local storage*******//
+        productArr.push(product)
+        localStorage.setItem("Products",JSON.stringify(productArr))
+        window.location.href="index.html"
+    }
+    
+//******create constructor function**************//
+    function productSold(n,c,i,p,g){
+        this.productName=n;
+        this.category=c;
+        this.image=i;
+        this.price=p;
+        this.gender=g;
+       
+    }
+    console.log("hello")
+
+</script>

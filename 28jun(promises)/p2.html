@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment</title>
+</head>
+<body>
+    <img id="img" src="" alt="">
+</body>
+</html>
+<script>
+     let x=document.querySelector("#img");
+    function bankserver(){
+        return false;
+    }
+    let payment_promise=new Promise(function(resolve,reject){
+        let pin=bankserver();
+        setTimeout(function(){
+            if(pin==true){
+                resolve("payment successful");
+            }else{
+                reject ("try again later");
+            }
+        },1000)
+    })
+    async function content(){
+        try {
+            let res=await payment_promise;
+            console.log(res)
+            x.src="https://c.tenor.com/xVfFIHxAzW4AAAAC/success.gif"
+        } catch(err){
+            console.log(err)
+            x.src="https://cdn.dribbble.com/users/34292/screenshots/5371308/expiredfailedpaymentvdrib.gif"
+        }
+    }
+    content()
+
+</script>

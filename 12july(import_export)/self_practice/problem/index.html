@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            margin-top: 20px;
+            
+        }
+        .item{
+            text-align: center;  
+        }
+        #food{
+            width: 30%;
+            margin: auto;
+            /* border: 2px solid red; */
+            margin-top: 80px;
+            
+        }
+        #search{
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            text-align: center;
+        }
+         
+            
+        
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="food">
+        <input type="text" id="search" placeholder="Enter food Name">
+    </div>
+   
+    <!-- <button id="btn"> Search</button> -->
+    <div id="container"></div>
+
+</body>
+</html>
+<script type="module" >
+
+    //************************import navbar from navbar.js*******
+    import navbar from "./navbar.js"
+    document.getElementById("navbar").innerHTML=navbar()
+
+ 
+ //******************fetch APi*****************
+     let searchFood=()=>{
+        let name=document.getElementById("search").value;
+        let url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
+        getData(url)
+    }
+    document.querySelector("#food").addEventListener("input",debounce)
+
+    let getData=async(url)=>{
+        let res=await fetch(url)
+        let data=await res.json()
+        console.log(data)
+      
+        appendData(data.meals)
+        recepieOfTheDay(data.meals)
+        return data.meals
+
+    }
+//****************append Data****************
+    let appendData=(data)=>{
+        container.innerHTML=""
+
+        if(!data){
+            return
+        }
+
+        data.forEach(({strMealThumb,strMeal}) => {
+
+            let div=document.createElement("div");
+            div.setAttribute("class","item")
+        
+            let image=document.createElement("img");
+            image.src=strMealThumb
+
+            let mealName=document.createElement("h4");
+            mealName.innerText=strMeal
+
+            div.append(image,mealName)
+
+           document.querySelector("#container").append(div) 
+        });
+    }
+//*********************debouncing************************
+    let id;
+    function  debounce(){
+    if(id){
+        clearTimeout(id)
+    }
+    id=setTimeout(searchFood,1000)
+}
+
+//********************racipe of the day***********
+function recepieOfTheDay(meal){
+    let i=Math.floor(Math.random()*meal.length)
+    localStorage.setItem("mealdata",JSON.stringify(meal[i]))
+    console.log(meal[i])
+
+}
+
+</script>

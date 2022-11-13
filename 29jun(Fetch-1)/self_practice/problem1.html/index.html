@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box ;
+        }
+      #navbar {
+        display: flex;
+        width: 100%;
+        height: 60px;
+        background-color: royalblue;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+      }
+      #movie {
+        width: 30%;
+        margin: 10px;
+        text-align: center;
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: large;
+        font-weight: bold;
+        
+      }
+      #btn {
+        width: 5%;
+        margin: 10px;
+        text-align: center;
+        background-color: rgb(174, 232, 15);
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: large;
+        font-weight: bold;
+        border: 0px;
+      }
+      #container {
+        width: 80%;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 50px 30px;
+        margin: auto;
+        margin-top: 80px;
+      }
+      #box{
+        width: 90%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+      }
+      #box>img{
+        width: 100%;
+        border-radius: 10px 10px 0px 0px;
+      }
+      h3,h4,h5{
+     
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+
+      }
+      #no_movie{
+        width: 60%;
+        height: 500px;
+        /* border: 2px solid; */
+        margin: auto;
+      }
+      #no_movie>img{
+        width: 100%;
+        height: 500px;
+      }
+      #box:hover{
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <input type="text" id="movie" placeholder="Enter Movie Name" />
+      <button id="btn">Search</button>
+
+    </div>
+
+    <div id="container"></div>
+    <div id="no_movie"></div>
+
+  </body>
+</html>
+<script>
+  
+  //let container = document.querySelector("#container")
+  document.querySelector("#btn").addEventListener("click", myMovie);
+  function myMovie() {
+    let no_movie = document.querySelector("#no_movie")
+    let movie = document.querySelector("#movie").value;
+ //***********invoke function 'MovieList'*********
+    MovieList(movie);
+   
+  }
+  //*******************Fetch APIs*************//
+
+  async function MovieList(name) {
+     let data = await fetch(
+      `https://www.omdbapi.com/?apikey=f1653a75&s=${name}`
+    );
+    data = await data.json();
+    //console.log(data)
+    if (data.Response == "True") {
+      append(data.Search);
+    }
+    else if (data.Response == "False") {
+      noMovie(name);
+    }
+}
+
+//************append movie list************//
+    
+function append(x) {
+    container.innerHTML=""
+  x.forEach((ele) => {
+    let div = document.createElement("div");
+    div.setAttribute("id", "box");
+
+    let image = document.createElement("img");
+    image.src = ele.Poster;
+
+    let title = document.createElement("h3")
+    title.innerText=ele.Title
+
+    let date = document.createElement("h4")
+    date.innerText=ele.Year
+    let rating = document.createElement("h5")
+    rating.innerText=Math.floor(Math.random() * 10)+"*"
+  
+    let container = document.querySelector("#container")
+    div.append(image,title,date,rating);
+    container.append(div);
+    
+    
+  });
+}
+
+//*********For no movie available***************//
+  function noMovie(movie) {
+    no_movie.innerHTML=""
+    //let no_movie = document.querySelector("#no_movie")
+    let image = document.createElement("img");
+    image.src = 'https://c.tenor.com/XQ0tXSAP8noAAAAC/no-data-upset.gif';
+    no_movie.append(image);
+  
+  }
+
+  
+//*********************************************************************
+//note:-1=if we take container at line no 99 then after clicking search old data also append so we access container at line No 143 also we can access
+//at inside myMovie function (ex=line No-104)
+ //2-if we take no_movie at line no 154 then after clicking search old data also append so we access container at line No 102
+
+</script>

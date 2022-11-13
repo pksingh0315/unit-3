@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+            display: grid;
+            width: 80%;
+            margin: auto;
+            grid-template-columns: repeat(3,1fr);
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="amar">
+            <h1>Amar</h1>
+            <p>singer</p>
+
+        </div>
+        <div id="akb">
+            <h1>Akbar</h1>
+            <p>chef</p>
+        </div>
+        <div id="ant">
+            <h1>anthony</h1>
+            <p>magecian</p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+ 
+    let obj2={
+        Skill:'chef'
+    }
+    let obj3={
+        Skill:'magecian'
+    }
+    let obj1={
+        Skill1:'singer',
+        skill:function (x){
+            console.log(`${x} is ${this.Skill} `)
+        }
+    }
+    obj1.skill.call(obj2,"amar")
+</script>

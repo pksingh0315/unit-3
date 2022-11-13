@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 30%;
+            margin: auto;
+        }
+        input,select{
+            font-size: 20px;
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input id="name" type="text" placeholder="Product name">
+        <input id="category" type="text" placeholder="Category">
+        <input id="image" type="text" placeholder="Image Url">
+        <input id="price" type="number" placeholder="price">
+        <select  name="gender" id="gender">
+            <option value="male">male</option>
+            <option value="female">Female</option>
+        </select>
+        <input id="sold" type="number" placeholder="Sold">
+        <input id="add" type="submit">
+
+    </form>
+</body>
+</html>
+<script>
+
+    let sellerData=JSON.parse(localStorage.getItem("Products"))||[]
+    document.querySelector('form').addEventListener('submit',myEcom);
+    function myEcom(event){
+        event.preventDefault();
+        let form=document.querySelector('form');
+        let name=form.name.value;
+        let category=form.category.value;
+        let image=form.image.value;
+        let price=form.price.value;
+        let gender=form.gender.value
+        let sold=form.sold.value;
+
+        let x=new item(name,category,image,price,gender,sold);
+        console.log(x)
+        sellerData.push(x);
+        localStorage.setItem("Products",JSON.stringify(sellerData))
+      
+    }
+
+    function item(n,c,i,p,g,s){
+        this.name=n;
+        this.category=c;
+        this.image=i;
+        this.price=p;
+        this.gender=g;
+        this.sold=s
+    }
+</script>

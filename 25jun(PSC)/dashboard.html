@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            width: 100%;
+            height: 60px;
+            border: 1px solid red;
+        }
+      
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    
+     
+    function append(){
+        let stuArr=JSON.parse(localStorage.getItem("studentData")) || []
+        // 
+        let container=document.querySelector("#container");
+    stuArr.forEach(function(el){
+        let container=document.querySelector("#container");
+      let div=document.createElement("div");
+      let img=document.createElement("img");
+      img.src=el.image;
+      let name=document.createElement('h2');
+      name.innerText=el.name;
+      let course =document.createElement('p');
+      course.innerText=el.course;
+      let unit =document.createElement('p');
+      unit.innerText=el.unit;
+      let batch =document.createElement('p');
+      batch.innerText=el.batch;
+
+      let btn=document.createElement('button');
+      btn.innerText="Remove";
+      btn.addEventListener("click",remove)
+  
+
+      div.append(img,name,course,unit,batch,btn);
+      container.append(div)
+
+    })
+    }
+    function remove(){
+        let stuArr=JSON.parse(localStorage.getItem("studentData")) || [];
+        let newData=stuArr.filter(function(el,i){
+
+        })
+    }
+    append()
+</script>

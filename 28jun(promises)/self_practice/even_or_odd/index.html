@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check Even or Odd</h1>
+    <input type="number" id="num" placeholder="Enter Number" />
+    <button id="btn">submit</button> <br />
+    <img id="photo" src="" alt="" />
+  </body>
+</html>
+<script>
+  document.querySelector("#btn").addEventListener("click", submit);
+
+  function submit() {
+    let number = document.querySelector("#num").value;
+    let image = document.querySelector("#photo");
+    image.src = "https://c.tenor.com/K2UGDd4acJUAAAAC/load-loading.gif";
+
+    let myPromise = new Promise((res, rej) => {
+      setInterval(() => {
+        if (check(number) == true) {
+          res();
+        } else {
+          rej();
+        }
+      }, 2000);
+    });
+    //**invoke pks function***
+    pks(myPromise, image);
+  }
+  //***promise consume by async/await*************
+  //Note:-here we can write async function inside the submit function
+
+  async function pks(myPromise, image) {
+    try {
+      let x = await myPromise;
+      image.src =
+        "https://whatistheurl.com/wp-content/uploads/2021/07/Even-Numbers-Poster.png";
+    } catch (y) {
+      image.src =
+        "https://whatistheurl.com/wp-content/uploads/2021/07/Odd-Numbers-Poster.png";
+    }
+  }
+
+  //*******function of check even or odd
+  function check(n) {
+    if (n % 2 == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>

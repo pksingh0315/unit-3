@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>HomePage</title>
+</head>
+<body>
+    <div id="navbar">
+
+    </div>
+    <button>
+        <a href="dashboard.html"> dashboard</a>
+    </button>
+    <h1>Add Student Data</h1>
+  <form id="student">
+    <input id="name" type="text" placeholder="Name">
+    <input id="course" type="text" placeholder="Course">
+    <input id="unit" type="number" placeholder="Unit">
+    <input id="image" type="text" placeholder="Image">
+    <input id="batch" type="text" placeholder="Batch">
+    <input type="submit">
+  </form>
+</body>
+</html>
+<script>
+    let navbar=document.querySelector("#navbar")
+    document.querySelector("#student").addEventListener("submit",storeData);
+    let stuArr=JSON.parse(localStorage.getItem("studentData")) || []
+
+  
+function storeData(event){
+    event.preventDefault()
+
+   let form=document.querySelector("#student");
+   let name=form.name.value;
+   let course =form.course.value;
+   let unit=form.unit.value;
+   let image =form.image.value;
+   let batch=form.batch.value;
+
+   let x=new Pks(name,course,unit,image,batch);
+    // console.log(x)
+ 
+    stuArr.push(x);
+   localStorage.setItem("studentData",JSON.stringify(stuArr))
+  
+}
+function Pks (n,c,u,i,b){
+        this.name=n;
+        this.course=c;
+        this.unit=u;
+        this.image=i;
+        this.batch=b;
+    }
+    function calculate(){
+    let stuArr=JSON.parse(localStorage.getItem("studentData")) || []
+        console.log(stuArr)
+        let obj={};
+        for(let i=0;i<stuArr.length;i++){
+           if(obj[stuArr[i].batch]==undefined){
+            obj[stuArr[i].batch]=1
+           }else{
+            obj[stuArr[i].batch]++
+           }
+        }
+     
+   for(let key in obj){
+ 
+    let div=document.createElement("div")
+    let h2=document.createElement('h2');
+    h2.innerText=key+"-"+obj[key]
+
+    div.classList.add("div")
+    div.append(h2)
+    navbar.append(div)
+  
+   }
+    }
+ calculate()
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+  </body>
+</html>
+<script>
+  //***********fetch Api by .then and .catch************//
+  //let url='https://reqres.in/api/users?page=2'
+  // let api=fetch("https://reqres.in/api/users?page=2")
+  // api.then((data)=>{
+  //     return data.json()
+
+  // }).then((res)=>{
+  //     //console.log(res.data)
+  //     append(res.data)
+  // })
+
+  //*****************Fetch Api by Async/await******************************
+
+  async function pks() {
+    let data = await fetch("https://reqres.in/api/users?page=2");
+    let res = await data.json();
+    append(res.data);
+}
+pks();
+
+//**************function for append Data(this is common for both)*******
+
+  function append(x) {
+    x.forEach((ele) => {
+      let div = document.createElement("div");
+      div.setAttribute("id", "div");
+      let image = document.createElement("img");
+      image.src = ele.avatar;
+
+      let fullName = document.createElement("h3");
+      fullName.innerText = ele.first_name + ele.last_name;
+
+      let id = document.createElement("h4");
+      id.innerText = ele.id;
+
+      div.append(image, fullName, id);
+      document.querySelector("#box").append(div);
+      console.log(ele);
+    });
+  }
+</script>

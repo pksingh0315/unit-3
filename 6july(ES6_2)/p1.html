@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+</head>
+<body>
+    <h1>ES6</h1>
+</body>
+</html>
+<script>
+class Stack{
+  constructor(){
+    this.length=0;
+    this.stack=[];
+  }
+  //collect all params in array via spread
+  push(...arr){
+    arr.forEach((el)=>{
+
+      let index=this.length;
+      this.stack[index]=el;
+      this.length++
+    })
+   }
+
+
+remove() {
+  let index=this.length-1;
+
+  delete this.stack[index];
+  this.stack.length--;
+  this.length--;
+}
+
+peek(){
+  return this.stack[this.length-1];
+
+}
+
+isEmpty(){
+  //ternary
+  //condition ? option1(when true): option2(when False)
+  let value=this.length===0 ? 'Stack is Empty' :`Stack has ${this.length} value`;
+
+  console.log(value)
+}
+}
+let s1=new Stack();
+
+s1.isEmpty();
+
+s1.push(1,2,3,4,5,6,7,8)
+
+s1.remove();
+
+let last=s1.peek();
+
+console.log('s1:',s1)
+
+s1.isEmpty()
+// let x=new Stack();
+// x.push(1,2,3,4,5,6,67,8)
+</script>

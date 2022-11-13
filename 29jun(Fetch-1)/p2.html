@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>problem2</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+                <!-- fetch by async await -->
+<script>
+
+//const url="https://fakestoreapi.com/products";
+    const url="https://fakestoreapi.com/products";
+    async function pks(){
+        try{
+            let res=await fetch(url);
+            let data=await res.json();
+            append(data)
+            console.log(data);
+
+        }catch(err){
+            console.log(err)
+        }
+    }
+    pks()
+   
+    function append(data){
+        let con=document.querySelector("#container")
+        data.sort(function(a,b){
+            return a.price-b.price
+        })
+        data.forEach(function(el){
+            console.log(el)
+            let image=document.createElement('img');
+            image.src=el.image;
+
+            let p=document.createElement('p');
+            p.innerText=el.title
+
+            let price=document.createElement('p');
+            price.innerText=el.price;
+
+            let div=document.createElement('div');
+            div.append(image,p,price)
+            container.append(div)
+
+        })
+    }
+    
+</script>                

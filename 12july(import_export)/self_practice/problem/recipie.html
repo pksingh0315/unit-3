@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        #container{
+    margin-top: 80px;
+}
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="container"></div>
+    <div id="box"></div>
+</body>
+<script type="module">
+    //*********import navbar*********
+    import navbar from "./navbar.js"
+    document.getElementById("navbar").innerHTML=navbar()
+
+    //**********get data from local storage and append it*******
+
+    let lsData=JSON.parse(localStorage.getItem("mealdata"))
+    console.log(lsData)
+
+    let image=document.createElement("img");
+    image.src=lsData.strMealThumb
+
+    document.getElementById("container").append(image)
+
+    //*************show incredients *************
+
+    function details(){
+        let box=document.getElementById("box")
+        let {strIngredient1,strIngredient2,strIngredient3,strIngredient4,strIngredient5,strIngredient6,strIngredient7,strIngredient8,strIngredient9,strIngredient10,strIngredient11,strIngredient12,strIngredient13,strIngredient14}=lsData
+        console.log(strIngredient1,strIngredient2,strIngredient3)
+
+      for(let i=1;i<=20;i++){
+         let item=document.createElement("p")
+        item.innerText=strIngredient1
+        box.append(item)
+        console.log(i)
+      }
+
+        
+
+
+    }
+    details()
+
+</script>
+</html>

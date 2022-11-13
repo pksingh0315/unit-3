@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      #navbar {
+        display: flex;
+        width: 100%;
+        height: 60px;
+        background-color: royalblue;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+      }
+      #navbar>h1{
+        width: 20%;
+        margin: 10px;
+        text-align: center;
+        background-color: white;
+        padding: 5px;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+   
+      }
+      #movies {
+        width: 70%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 30px;
+        margin: auto;
+        margin-top: 30px;
+      }
+      .movie_tab{
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+        /* border: 1px solid red; */
+        padding-bottom: 10px;
+      }
+      .movie_tab>img{
+        width: 100%;
+        border-radius: 10px 10px 0px 0px;
+      }
+      .book_now{
+        background-color: cornflowerblue;
+        padding: 5px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        border: 0px;
+        border-radius: 8px;
+        margin-top: 5px;
+      }
+      #search_bar{
+        width: 50%;
+        /* border: 1px solid red; */
+        margin: auto;
+        background-color: slategray;
+        margin-top: 80px;
+        border-radius: 10px;
+      
+      }
+      #search{
+        width: 80%;
+        margin:10px 10px 10px 60px;
+        padding: 8px;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-style: italic;
+      }
+      #btn{
+        background-color: cornflowerblue;
+        width: 10%;
+        padding: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        border-radius: 8px;
+        border: 0px;
+        background-color: cornflowerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h1>Movie List</h1>
+      <h1></h1>
+      <!-- Display the wallet amount here inside h1 tag with id as "wallet". Note only amount, no extra text. Like 500 not Rs 500 -->
+    </div>
+    <div id="search_bar">
+      <!-- input box for searching movies with id as "search" -->
+      <input type="text" id="search" placeholder="Search movie" />
+      <!-- No button should be there for searching movies, it should search with input  -->
+      <!-- <button id="btn">Search</button> -->
+    </div>
+
+    <div id="movies">
+      <!-- Append all searched movies here in grid format -->
+      <!-- Every movie card should have image, title and a book now button  -->
+      <!-- Book now buttons should have class "book_now"  -->
+      <!-- <button class="book_now">
+        <a href="checkout.html">Book Now</a>
+      </button> -->
+    </div>
+  </body>
+  <script src="./scripts/movies.js"></script>
+</html>

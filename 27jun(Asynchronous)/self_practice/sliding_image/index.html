@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p3</title>
+    <style>
+        #main{
+            width: 40%;
+            /* border: 2px solid; */
+            margin: auto;
+            padding: 0px;
+            text-align: center;
+            background-color: darkgrey;
+            margin-bottom: 10px;
+        }
+        input,button{
+            margin: 10px;
+            padding: 10px;
+        }
+        #box{
+            width: 60%;
+            height: 500px;
+            /* border: 1px solid; */
+            margin: auto;
+        }
+     
+    </style>
+  </head>
+  <body>
+    <div id="main">
+        <h1>Sliding image</h1>
+        <input type="url" id="photo" placeholder="Paste Image Url" /> <br>
+        <button id="btn">Submit</button>
+        <button id="slide">Start slide</button>
+        <button id="stop">Stop</button>
+  </div>
+  
+    <div id="box"></div>
+  </body>
+</html>
+<script>
+  //**********for submit Data*****************//
+
+  document.querySelector("#btn").addEventListener("click", submitImage);
+
+  let imageArr = JSON.parse(localStorage.getItem("imageData")) || [];
+
+  function submitImage() {
+    let image = document.querySelector("#photo").value;
+
+    imageArr.push(image);
+    localStorage.setItem("imageData", JSON.stringify(imageArr));
+    //*****for impty input*****//
+    photo.value=null
+  }
+
+  //***************************for sliding***************//
+  document.querySelector("#slide").addEventListener("click", slideImage);
+
+//***write outside slideImage because after stop if again start then new div generate and append image again
+
+  lsData = JSON.parse(localStorage.getItem("imageData")) ;
+    let div = document.querySelector("#box");
+    let img = document.createElement("img");
+    let i = 0;
+
+  let id;
+  function slideImage() {
+
+
+    id=setInterval(() => {
+      if (i == lsData.length-1) {
+        i = 0;
+      }
+
+      img.src = lsData[i];
+
+      div.append(img);
+      i++;
+    }, 1000);
+  }
+
+  document.querySelector("#stop").addEventListener("click",function(){
+    clearInterval(id)
+  })
+</script>

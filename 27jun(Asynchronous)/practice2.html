@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>slide</h1>
+    <input id="img" type="text">
+    <button onclick="addimage()">submit</button>
+    <button onclick="slide()">slide start</button>
+    <button onclick="stop()">pause</button>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+       
+    function addimage(){
+        let image=document.querySelector("#img");
+        let imgArr=JSON.parse(localStorage.getItem('images'))||[];
+        imgArr.push(image.value);
+
+        localStorage.setItem("images",JSON.stringify(imgArr));
+        image.value=null
+    }
+    let id;
+    let i=0
+    function slide(){
+        let imgArr=JSON.parse(localStorage.getItem('images'))||[];
+        let con=document.getElementById('container');
+        let i=0;
+         id=setInterval(function(){
+            console.log[i]
+            if(i===imgArr.length){
+                i=0;
+            }
+            let img=document.createElement('img');
+            img.src=imgArr[i];
+            con.innerHTML=null;
+            con.append(img);
+            i++
+        },1000)
+    }
+    function stop(){
+        clearInterval(id);
+    }
+</script>

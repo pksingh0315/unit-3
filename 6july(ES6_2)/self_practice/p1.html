@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES6</title>
+  </head>
+  <body>
+    <h1>Class</h1>
+  </body>
+</html>
+<script>
+  class students {
+    constructor(n, a, c) {
+      (this.Name = n), (this.Age = a), (this.cls = c);
+    }
+  }
+
+  class player extends students {
+    constructor(n, a, c, game) {
+      super(n, a, c);
+      this.Mygame = game;
+    }
+    biodata() {
+      console.log(
+        `Hi my name is ${this.Name} I am ${this.Age} year olds and I am in class ${this.cls} my favorite game is ${this.Mygame}`
+      );
+    }
+  }
+  let student1 = new player("pradeep", 24, "B.tech", "cricket");
+  student1.biodata();
+</script>

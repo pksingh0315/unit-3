@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <style>
+         * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      #navbar {
+        display: flex;
+        width: 100%;
+        height: 60px;
+        background-color: royalblue;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+      }
+      #navbar>h1{
+        width: 20%;
+        margin: 25px;
+        text-align: center;
+        background-color: white;
+        padding: 5px;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+   
+      }
+      #user-detail{
+        width: 20%;
+        margin: auto;
+        text-align: center;
+        margin-top: 80px;
+      }
+      input,button{
+        width: 100%;
+        padding: 5px;
+        margin: 5px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        font-size: 18px;
+
+      }
+      #confirm{
+        width: 50%;
+        background-color: cornflowerblue;
+        font-size: 18px;
+       
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        border: 0px;
+        border-radius: 8px;
+        
+      }
+      #movie{
+        width: 30%;
+        margin: auto;
+        /* border: 1px solid red; */
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h1>Cost:100/seat</h1>
+      <!-- Display the wallet amount here inside h1 tag with id as "wallet". Note only amount, no extra text. Like 500 not Rs 
+        500 -->
+        <h1></h1>
+    </div>
+    <div id="user-detail">
+      <!-- input field to accept user name with id as "user_name" 
+      input -->
+      <input type="text" id="user_name" placeholder="User Name">
+      <!-- input field to accept number of seats with id as "number_of_seats"  -->
+      <input type="number" id="number_of_seats" placeholder="Number of Seats">
+      <!-- A submit button to confirm booking with id as "confirm" 
+      button -->
+      <button id="confirm">Confirm booking</button>
+    </div>
+
+    <div id="movie">
+      <!-- Append the selected movie for booking here -->
+      <!-- movie should have title and image  -->
+      <!-- It should be the same movie you selected for booking  -->
+    </div>
+  </body>
+  <script src="./scripts/checkout.js"></script>
+</html>

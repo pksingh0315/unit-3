@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="url" id="food" placeholder="Food url" />
+    <button id="btn">Submit</button> <br />
+    <img id="photo" src="" alt="" />
+  </body>
+</html>
+<script>
+  let body = document.querySelector("body");
+  document.querySelector("#btn").addEventListener("click", myFood);
+  function myFood() {
+    let foodName = document.querySelector("#food").value;
+
+    let img = document.querySelector("#photo");
+    img.src = foodName;
+
+    let button = document.createElement("button");
+    button.innerText = "order";
+    button.addEventListener("click", function () {
+      myOrder(img);
+    });
+
+    body.append(button);
+  }
+  //let img=document.createElement('img')
+  async function myOrder(img) {
+    img.src = "https://c.tenor.com/YPOStjIfQ2IAAAAC/loading-waiting.gif";
+    let t = Math.floor(Math.random() * 5);
+    let data = new Promise((res, rej) => {
+      setTimeout(() => {
+        res();
+      }, t * 1000);
+    });
+
+    let x = await data;
+
+    img.src = "http://www.whitehookah.com/Images/payment-successful.png";
+
+
+  }
+</script>

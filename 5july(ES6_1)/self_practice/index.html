@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            margin-top: 80px;
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            height: 60px;
+            justify-content: center;
+            align-items: center;
+            background-color: cornflowerblue;
+            position: fixed;
+            top: 0;
+        }
+        #name{
+            width: 30%;
+            margin: 10px;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+        #search{
+            padding: 10px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <input type="text" placeholder="Movie Name" id="name">
+        <button id="search">Search</button>
+    </div>
+  
+    <div id="container"></div>
+</body>
+</html>
+<script>
+
+    let movieSearch=async()=>{
+        let name=document.querySelector("#name").value;
+        let url=`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${name}&key=AIzaSyDmD-sHs7L4uvfe6zJgN6mGV7hAHCJrWNY`
+
+    let x=await fechData(url)
+
+    
+    append(x)
+    }
+    document.querySelector("#search").addEventListener("click",movieSearch)
+
+    //********************feching Data**********************//
+    let fechData=async (url)=>{
+        let data=await fetch(url);
+        data=await data.json()
+        return data.items
+        //console.log(data.items)
+
+    }
+    //*************************append Data****************
+    let append=(data)=>{
+        let container=document.querySelector("#container");
+        container.innerHTML=""
+        
+        data.forEach(ele => {
+        let div=document.createElement("div");
+        div.setAttribute("id","box")
+        div.addEventListener("click",function(){
+            playVideo(ele)
+            window.location.href="video.html"
+        })
+
+        let image=document.createElement("img");
+        image.src=ele.snippet.thumbnails.medium.url
+
+        let h3=document.createElement('h3');
+        h3.innerText=ele.snippet.title;
+        console.log(ele) 
+       
+        div.append(image,h3);
+
+        
+        container.append(div)
+                   
+        });
+
+    }
+
+    //*******************for video play***********************
+    function playVideo(data){
+        localStorage.setItem("playVideo",JSON.stringify(data))
+
+    }
+
+</script>

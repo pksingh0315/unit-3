@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wether</title>
+</head>
+<body>
+    <input type="text" id="city" placeholder="Enter City Name">
+    <button id="btn"> Submit</button>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    document.querySelector("#btn").addEventListener("click",submitWeather)
+    async function submitWeather(){
+        let city=document.querySelector("#city").value;
+        let url= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e397a5e37c2cc22595a0e83628d4079c`
+
+
+
+        let data=await fetch(url)
+       data=await data.json()
+       IloveFetch(data)
+        //console.log(data)
+    }
+  function IloveFetch(data){
+
+    let div=document.querySelector("#container")
+    let city=document.createElement("h1")
+    city.innerText=`City:-${data.name}`
+    let max=document.createElement("h2")
+    max.innerText=`Max Temp:-${data.main.temp_max}`
+    let min=document.createElement("h2")
+    min.innerText=`Min Temp:-${data.main.temp_min}`
+    div.append(city,max,min)
+  
+    console.log(data)
+
+  
+  }
+       
+      
+
+</script>

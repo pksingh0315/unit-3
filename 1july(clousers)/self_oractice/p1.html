@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closure</title>
+</head>
+<body>
+    <input type="text" id="search" >
+    <div id="container"></div>
+</body>
+</html>
+<script>
+  document.querySelector("#search").addEventListener("input",debounce)
+  function movieInput(){
+    let name=document.querySelector("#search").value;
+    let url=`https://www.omdbapi.com/?apikey=f1653a75&s=${name}`
+
+    async function movieFetch(){
+        let data=await fetch(url)
+        data=await data.json()
+        movieData(data.Search)
+        
+    }
+    movieFetch()
+  }
+
+  function movieData(data){
+    if(!data){
+      return 
+    }
+    container.innerHTML=""
+    data.forEach(ele => {
+      let box=document.createElement("div")
+      box.setAttribute("id","box")
+
+      let image=document.createElement("img");
+      image.src=ele.Poster
+
+      let title=document.createElement("p");
+      title.innerText=ele.Title;
+
+      box.append(image,title);
+      document.querySelector("#container").append(box)
+
+      console.log(ele)
+    });
+
+  }
+let id;
+  function debounce(){
+    if(id){
+      clearTimeout(id)
+    }
+    id=setTimeout(movieInput,5000)
+  }
+
+   
+</script>

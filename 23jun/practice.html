@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formal" onsubmit="Submit(event)">
+        <input id="nam" type="text" placeholder="name">
+        <input id="dam" type="number" placeholder="price">
+        <input id="sub" type="submit">
+      
+    </form>
+
+
+</body>
+</html>
+<script>
+
+   
+    function Submit(e){
+        e.preventDefault();
+        let form=document.getElementById("formal");
+        let name=form.nam.value;
+        let price=form.dam.value
+
+        let x=new pks(name,price)
+ 
+     
+    }
+
+    function pks(n,t){
+        this.name=n;
+        this.price=t
+    }
+</script>

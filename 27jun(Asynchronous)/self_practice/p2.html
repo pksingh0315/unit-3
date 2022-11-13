@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p2</title>
+  </head>
+  <body>
+    <h1>counter</h1>
+    <h2 id="count"></h2>
+    <input id="type" type="text" placeholder="start typing" />
+  </body>
+</html>
+<script>
+  let counter = 0;
+
+  function pks() {
+    counter++;
+    let name = "pradeep";
+    let txt = document.querySelector("#type");
+
+    let count = document.querySelector("#count");
+
+    count.innerText = counter;
+    if (txt.value === name) {
+      alert("Jit gya bhai");
+      clearInterval(id);
+    }
+    if (counter === 10) {
+      txt.disable = true;
+      alert("har gya bhai");
+      clearInterval(id);
+    }
+  }
+
+  let id = setInterval(pks, 500);
+</script>

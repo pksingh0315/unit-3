@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oop</title>
+  </head>
+  <body>
+    <h1>Object Oriented programming</h1>
+  </body>
+</html>
+<script>
+//**************student Management System**************
+
+let studentArr=[]
+
+class user{
+  constructor(name,id){
+    this.name=name;
+    this.id=id
+  }
+  signup(username,password){
+    //valideate of username and password as per rule
+    let isValidate=false;
+    //validating username and password method
+    isValidate=this.validateUsername(username) && this.validatePassword(password)
+
+    if(isValidate==true){    //if(isValidate==false) then it show 'invalid credentials' 
+      this.usernam=username;
+      this.pass=password;
+      console.log("user registered successfully!")
+      studentArr.push(this)
+    }else{
+      console.log('invalid credentials')
+    }
+
+  }
+  validateUsername(){
+    //checking for rule
+    return true;
+  }
+  validatePassword(){
+    //checking for rule;
+    return true
+  }
+
+  //*************for login***************
+  login(username,password){
+    if(username==this.usernam && password==this.pass){
+      console.log("Logged in !")
+    }else{
+      console.log("Authentication fail!")
+      
+    }
+
+  }
+
+}
+
+
+//****extends*************
+class students extends user{
+  constructor(name,id){
+    super(name,id)
+  }
+}
+
+
+let s1=new students("pablo",7)
+let s2=new students("picaso",10)
+s1.signup("pablo123","pablopass")
+s2.signup("pisacco","picassopass")
+
+s1.login("pablo123","pablopass")
+
+console.log(studentArr)
+s1.signup()
+
+
+
+</script>

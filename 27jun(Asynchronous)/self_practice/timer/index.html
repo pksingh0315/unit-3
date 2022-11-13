@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+    <style>
+        #container{
+            width: 40%;
+            border: 2px solid teal;
+            margin: auto;
+            padding: 10px 0px 20px 0px ;
+        }
+        h1{
+            text-align: center;
+        }
+            #box{
+        width:80px;
+        height: 40px;
+        border: 1px solid;
+        margin: auto;
+        margin-bottom: 20px;
+    
+    
+    }
+    #box>h1{
+            margin: auto;
+            text-align: center;
+        }
+    #start,#stop{
+      margin-left: 150px;
+        padding: 5px 20px 5px 20px;
+    }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <h1>Stop Watch</h1>
+        <div id="box">
+            <h1></h1>
+        </div>
+       <button id="start">start</button>
+       <button id="stop">stop</button>
+    </div>
+
+</body>
+</html>
+<script>
+    let start=document.querySelector("#start")
+    start.addEventListener("click",myStart)
+
+    let stop=document.querySelector("#stop")
+    stop.addEventListener("click",myStop)
+
+
+  let t;
+  let count=0
+    function myStart(){
+      
+         t=setInterval(()=>{
+         
+            count++
+            document.querySelector('#box>h1').innerText=count
+        
+        },1000)
+       
+    }
+
+
+    function myStop(){
+      clearInterval(t)  
+    }
+    
+
+
+</script>

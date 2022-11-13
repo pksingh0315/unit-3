@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice</title>
+    <style>
+      #container{
+        width: 40%;
+        /* border: 2px solid ; */
+        margin: auto;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: bisque;
+        padding: 10px;
+      }
+      #main{
+        display: flex;
+        width: 100%;
+        margin-bottom: 20px;
+
+      }#main>div{
+        width: 20%;
+        height: 60px;
+        margin: auto;
+        
+        border: 1px solid red;
+        font-weight: bold;
+        font-size: 30px;    
+        text-align: center;
+        border-radius: 10px;
+       
+      }
+      #winner{
+        width: 30%;
+        height: 50px;
+ 
+        margin: auto;
+        border: 1px solid green;
+        margin-top:30px;
+        margin-bottom: 40px;
+        font-weight: bold;
+        font-size: 30px;    
+      }#roll{
+        padding: 10px;
+        font-weight: bold;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="winner"></div> 
+      <div id="main">
+        <div id="member-1">A</div>
+        <div id="member-2">B</div>
+        <div id="member-3">C</div>
+      </div>
+  
+      <button id="roll">ROLE THE DICE</button>
+    </div>
+
+  </body>
+  <script>
+    // let body = document.querySelector("body");
+         let main= document.querySelector("#main")
+    document.querySelector("#roll").addEventListener("click", dicethrown);
+    //let arr=[];
+    function dicethrown() {  
+      let winner=document.querySelector("#winner")
+      let div1 = document.querySelector("#member-1").innerText=Number(Math.floor(Math.random() *6 )+1);;
+     
+      //div1.style.backgroundColor="green"
+   
+     
+    
+      let div2 = document.querySelector("#member-2").innerText = Number(Math.floor(Math.random() *6 )+1);
+      
+
+      let div3 = document.querySelector("#member-3").innerText = Number(Math.floor(Math.random() * 6)+1);
+    console.log(typeof div1,typeof div2,typeof div3)
+  
+
+
+      if(div1>div2&&div1>div3){
+        winner.innerText="A"
+        document.querySelector("#member-1").style.backgroundColor="green"
+        
+      } if(div2>div1&&div2>div3){
+        winner.innerText="B"
+        document.querySelector("#member-2").style.backgroundColor="green"
+       
+      } if(div3>div1&&div3>div2){
+        winner.innerText="C"
+        document.querySelector("#member-3").style.backgroundColor="green"
+      }
+      //*******for losser*******//
+       if(div1<div2&&div1<div3){
+       // winner.innerText="A"
+        document.querySelector("#member-1").style.backgroundColor="red"
+        
+      }
+       if(div2<div1&&div2<div3){
+       // winner.innerText="B"
+        document.querySelector("#member-2").style.backgroundColor="red"
+       
+      } if(div3<div1&&div3<div2){
+        //winner.innerText="C"
+        document.querySelector("#member-3").style.backgroundColor="red"
+      }
+      //**********for Second place**********//
+
+      if((div1>div2&&div1<div3)||(div1>div3&&div1<div2)){
+        //winner.innerText="A"
+        document.querySelector("#member-1").style.backgroundColor="Yellow"
+        
+      } if((div2>div1&&div2<div3)||(div2>div3&&div2<div1)){
+        //winner.innerText="B"
+        document.querySelector("#member-2").style.backgroundColor="yellow"
+       
+      } if((div3>div1&&div3<div2)||(div3>div2&&div3<div1)){
+        //winner.innerText="C"
+        document.querySelector("#member-3").style.backgroundColor="yellow"
+      }
+
+      //*********for tie********//
+      if(div1==div2){
+        winner.innerText="Draw"
+        document.querySelector("#member-1").style.backgroundColor="blue"
+        document.querySelector("#member-2").style.backgroundColor="blue"
+        
+      }
+      if(div2==div3){
+        winner.innerText="Draw"
+        document.querySelector("#member-2").style.backgroundColor="blue"
+        document.querySelector("#member-3").style.backgroundColor="blue"
+        
+      }
+      if(div3==div1){
+        winner.innerText="Draw"
+        document.querySelector("#member-1").style.backgroundColor="blue"
+        document.querySelector("#member-3").style.backgroundColor="blue"
+        
+      }
+      // else if(div1==div2||div1==div3){
+      //   winner.innerText="Tie"
+      //   document.querySelector("#member-3").style.backgroundColor="blue"
+      // }
+      // main.append(div1,div2,div3)
+    }
+  </script>
+</html>
